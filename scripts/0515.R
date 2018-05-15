@@ -5,3 +5,5 @@ crabdata <- read.csv("https://raw.githubusercontent.com/RobertsLab/project-crab/
 
 
 crabdata
+
+write.csv(crabdata, file = "data/crabdata.csv")
