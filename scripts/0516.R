@@ -16,3 +16,20 @@ colnames(crabdata_pcr)
 crabdata_pcr %>% 
   select(FRP, Sample_Day, temperature_treatment, infection_status, sq_mean.y, sq_mean.x) %>% 
   arrange(infection_status,sq_mean.y)
+
+
+pcrsum <- crabdata_pcr %>% 
+  select(FRP, infection_status, sq_mean.y, sq_mean.x) %>% 
+  arrange(infection_status,sq_mean.y) %>%
+  unique()
+
+
+
+
+ggplot(data = pcrsum) + 
+    geom_histogram(aes(x = sq_mean.y)) +
+    facet_wrap(~infection_status) 
+
+ggplot(data = pcrsum) + 
+  geom_histogram(aes(x = sq_mean.x)) +
+  facet_wrap(~infection_status) 
