@@ -26,6 +26,7 @@ pcrsum <- crabdata_pcr %>%
 
 
 
+
 ggplot(data = pcrsum) + 
     geom_histogram(aes(x = sq_mean.y)) +
     facet_wrap(~infection_status) 
@@ -33,3 +34,19 @@ ggplot(data = pcrsum) +
 ggplot(data = pcrsum) + 
   geom_histogram(aes(x = sq_mean.x)) +
   facet_wrap(~infection_status) 
+
+
+
+
+pcrsum
+
+
+
+crdf <- pcrsum %>% 
+  group_by(infection_status) %>% 
+  mutate(grouped_id = row_number())
+
+# Now Spread
+crdf %>% 
+  spread(infection_status, FRP) %>% 
+  select(-grouped_id)
