@@ -15,12 +15,67 @@ Here is what the current "Master" looks like
 
 
 
-```{r}
+```{r, include = FALSE}
 library(tidyverse)
 ```
 
 ```{r}
-    prim_master <- read_csv("../data/20180522-master-all-crabs-hemo-mod2.csv")
+    prim_master <- read_csv("../data/20180522-master-all-crabs-hemo-mod3.csv")
 ```
 
+```{r}
+prim_master
+```
+
+```{r} 
+df <- prim_master %>% 
+  group_by(FRP) %>% 
+  mutate(grouped_id = row_number())
+df
+```
+
+```{r}
+dfhack <- df %>% 
+  spread(grouped_id, tube_no)
+```
+
+```{r}
+dfhack
+```
+
+```{r}
+write_csv(dfhack, "../analyses/dfhack.csv")
+```
+
+
+
+
+
+## Open in Excel. 
+
+magic crap
+
+<iframe width="560" height="315" src="../vid/excel_crap.mov" frameborder="0" allowfullscreen></iframe>.
+
+
+
+
+
+
+
+```{r}
+dfhack2 <- read_csv("../analyses/dfhack.csv")
+```
+
+
+
+```{r}
+dfhack2
+```
+
+```{r, eval=FALSE}
+prim_master_00 <- filter(dfhack2, tube26 != ".")
+prim_master_00
+write.csv(prim_master_00, "../analyses/prim_master_00.csv")
+```
 
