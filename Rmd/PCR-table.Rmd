@@ -33,9 +33,72 @@ library(dplyr)
 
 
 ```{r}
-mutate(first_pcr, sampleday = ifelse(Sample_pre == 37 | Sample_pre == 38, "day26", ifelse(Sample_pre == 30 | Sample_pre == 31 | Sample_pre == 32 | Sample_pre == 33 | Sample_pre == 34, "day01", "unknown")))
+withDay <- mutate(first_pcr, sampleday = ifelse(Sample_pre == 37 | Sample_pre == 38, "day26", ifelse(Sample_pre == 30 | Sample_pre == 31 | Sample_pre == 32 | Sample_pre == 33 | Sample_pre == 34, "day01", "unknown"))) %>%
+  group_by(FRP) %>% 
+  mutate(grouped_id = row_number()) %>%
+  spread(grouped_id, SQ_Mean)
+
+```
+
+
+Now need to work on getting FRP unique in every row...
+
+
+```{r}
+withDay02 <- mutate(first_pcr, sampleday = ifelse(Sample_pre == 37 | Sample_pre == 38, "day26", ifelse(Sample_pre == 30 | Sample_pre == 31 | Sample_pre == 32 | Sample_pre == 33 | Sample_pre == 34, "day01", "unknown"))) 
+
+```
+
+```{r}
+write.csv(withDay02, "../analyses/withDay02.csv")
 ```
 
 
 
-Now need to work on getting FRP unique in every row...
+EXCDEL
+
+
+```{r}
+withDay03 <- read_csv("../analyses/withDay03.csv")
+```
+
+
+```{r}
+withDay03[,2] <- sapply(withDay03[,2], as.integer)
+```
+
+
+]
+
+```{r}
+withDay03
+```
+
+
+
+
+
+
+```{r}
+withDay03 %>%
+  group_by(FRP) %>% 
+  spread(sampleday, Starting_Quantity) 
+
+```
+
+```{r}
+withDay03 %>%
+  group_by(FRP) %>% 
+  spread(sampleday, Starting_Quantity) %>% 
+  summarise(avg = mean(Starting_Quantity))
+
+```
+
+
+
+```{r}
+withDay03 %>%
+  group_by(FRP) %>% 
+  summarise(avg = mean(Starting_Quantity))
+
+```
