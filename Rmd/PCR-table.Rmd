@@ -11,15 +11,23 @@ Here I will attempt to get the PCR Data in order...
 
 File: https://raw.githubusercontent.com/RobertsLab/project-crab/master/data/20180522-master-qPCR-all-runs.csv
 
-
-
-
 ```{r}
-first_pcr <- read_csv("../data/20180522-master-qPCR-all-runs.csv")
+library(dplyr)
+library(tidyr)
+
 ```
 
+
+
+
 ```{r}
-first_pcr
+first_pcr <- read.csv("../data/20180522-master-qPCR-all-runs.csv")
+``` 
+
+
+
+```{r}
+head(first_pcr)
 ```
 
 
@@ -59,7 +67,7 @@ EXCDEL
 
 
 ```{r}
-withDay03 <- read_csv("../analyses/withDay03.csv")
+withDay03 <- read.csv("../analyses/withDay03.csv")
 ```
 
 
@@ -71,7 +79,7 @@ withDay03[,2] <- sapply(withDay03[,2], as.integer)
 ]
 
 ```{r}
-withDay03
+head(withDay03)
 ```
 
 
@@ -86,7 +94,7 @@ withDay03 %>%
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 withDay03 %>%
   group_by(FRP) %>% 
   spread(sampleday, Starting_Quantity) %>% 
