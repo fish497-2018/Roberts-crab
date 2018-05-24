@@ -1,0 +1,16 @@
+---
+title: "Making-it"
+output: html_document
+---
+
+
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+left_join(prim_master, PCR_day01, by="FRP") %>%
+  left_join(PCR_day26, by="FRP")
+```
+
