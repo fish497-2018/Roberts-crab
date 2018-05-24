@@ -13,7 +13,7 @@ File: https://raw.githubusercontent.com/RobertsLab/project-crab/master/data/2018
 
 ```{r}
 library(dplyr)
-library(tidyr)
+library(tidyverse)
 
 ```
 
@@ -67,12 +67,12 @@ EXCDEL
 
 
 ```{r}
-withDay03 <- read.csv("../analyses/withDay03.csv")
+withDay03 <- read_csv("../analyses/withDay03.csv")
 ```
 
 
 ```{r}
-withDay03[,2] <- sapply(withDay03[,2], as.integer)
+withDay03[,2] <- sapply(withDay03[,2], as.numeric)
 ```
 
 
@@ -94,19 +94,31 @@ withDay03 %>%
 
 ```
 
-```{r, eval=FALSE}
-withDay03 %>%
-  group_by(FRP) %>% 
-  spread(sampleday, Starting_Quantity) %>% 
-  summarise(avg = mean(Starting_Quantity))
-
-```
-
-
-
 ```{r}
 withDay03 %>%
   group_by(FRP) %>% 
-  summarise(avg = mean(Starting_Quantity))
+  spread(sampleday, Starting_Quantity) %>% 
+  filter(day01 != ' ')
+
+```
+
+```{r}
+PCR_day26 <- withDay03 %>%
+  group_by(FRP) %>% 
+  spread(sampleday, Starting_Quantity) %>% 
+  filter(day26 != ' ') %>%
+  select(FRP, day26) %>%
+  group_by(FRP) %>% 
+  summarise(Avg_startq_day26 = mean(day26))
+
+```
+```{r}
+PCR_day01 <- withDay03 %>%
+  group_by(FRP) %>% 
+  spread(sampleday, Starting_Quantity) %>% 
+  filter(day01 != ' ') %>%
+  select(FRP, day01) %>%
+  group_by(FRP) %>% 
+  summarise(Avg_startq_day01 = mean(day01))
 
 ```

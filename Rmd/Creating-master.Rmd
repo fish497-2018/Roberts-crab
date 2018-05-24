@@ -80,3 +80,9 @@ prim_master_00
 write.csv(prim_master_00, "../analyses/prim_master_00.csv")
 ```
 
+load("../an")
+```{r}
+prim_master <- read_csv("../analyses/prim_master_00.csv")
+```
+
+
