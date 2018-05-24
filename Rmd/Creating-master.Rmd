@@ -51,12 +51,13 @@ write_csv(dfhack, "../analyses/dfhack.csv")
 
 
 
-## Open in Excel. 
+## Open in Excel. .
 
 magic crap
 
-<iframe width="560" height="315" src="../vid/excel_crap.mov" frameborder="0" allowfullscreen></iframe>.
+See video 
 
+http://owl.fish.washington.edu/whale/excel_crap.mov
 
 
 
@@ -74,7 +75,7 @@ dfhack2
 ```
 
 ```{r, eval=FALSE}
-prim_master_00 <- filter(dfhack2, tube26 != ".")
+prim_master_00 <- filter(dfhack2, tube12 != ".")
 prim_master_00
 write.csv(prim_master_00, "../analyses/prim_master_00.csv")
 ```
