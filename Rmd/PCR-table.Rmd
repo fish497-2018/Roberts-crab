@@ -14,7 +14,7 @@ File: https://raw.githubusercontent.com/RobertsLab/project-crab/master/data/2018
 
 
 
-```{r warning=FALSE}
+```{r}
 first_pcr <- read_csv("../data/20180522-master-qPCR-all-runs.csv")
 ```
 
