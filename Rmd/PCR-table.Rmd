@@ -38,4 +38,4 @@ mutate(first_pcr, sampleday = ifelse(Sample_pre == 37 | Sample_pre == 38, "day26
 
 
 
-
+Now need to work on getting FRP unique in every row...
