@@ -62,7 +62,7 @@ http://owl.fish.washington.edu/whale/excel_crap.mov
 
 
 
-
+dfhack2 is the file once hacked up with Excel
 
 ```{r}
 dfhack2 <- read_csv("../analyses/dfhack.csv")
