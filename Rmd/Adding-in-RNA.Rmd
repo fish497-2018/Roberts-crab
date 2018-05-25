@@ -3,26 +3,106 @@ title: "Adding in the RNA"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+library(tidyverse)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+RNAdata <- read_csv("../analyses/20180524_RNA.csv")
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+RNAdata
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+```{r}
+left_join(prim_master, PCR_day01, by ="FRP") %>%
+  left_join(PCR_day26, by ="FRP") %>%
+  left_join(day9RNA, by ="FRP") %>%
+  left_join(day12RNA, by ="FRP") %>%
+  left_join(day26RNA, by ="FRP") 
+```
+
+
+
+
+```{r}
+day9RNA <- RNAdata %>% mutate(record_id = row_number()) %>% 
+  group_by(FRP) %>% 
+  spread(Sample_Day, RNA_conc) %>% 
+  rename(RNAday9 = "9", RNAday12 = "12", RNAday26 = "26" ) %>% 
+  filter(RNAday9 != 0) %>% 
+  select(FRP, infection_status, temperature_treatment, RNAday9)
+
+```
+
+```{r}
+day12RNA <- RNAdata %>% mutate(record_id = row_number()) %>% 
+  group_by(FRP) %>% 
+  spread(Sample_Day, RNA_conc) %>% 
+  rename(RNAday9 = "9", RNAday12 = "12", RNAday26 = "26" ) %>% 
+  filter(RNAday12 != 0) %>% 
+  select(FRP, RNAday12)
+
+```
+
+```{r}
+day26RNA <- RNAdata %>% mutate(record_id = row_number()) %>% 
+  group_by(FRP) %>% 
+  spread(Sample_Day, RNA_conc) %>% 
+  rename(RNAday9 = "9", RNAday12 = "12", RNAday26 = "26" ) %>% 
+  filter(RNAday26 != 0) %>%
+  select(FRP, RNAday26)
+
+```
+
+
+```{r}
+day9RNA
+```
+
+
+
+
+```{r}
+left_join(prim_master, PCR_day01, by ="FRP") %>%
+  left_join(PCR_day26, by ="FRP") %>%
+  left_join(day9RNA, by ="FRP") %>%
+  left_join(day12RNA, by ="FRP") %>%
+  left_join(day26RNA, by ="FRP") 
+```
+
+
+
+
+
+```{r}
+left_join(prim_master, PCR_day01, by ="FRP") %>%
+  left_join(PCR_day26, by ="FRP") %>%
+  left_join(day9RNA, by ="FRP") %>%
+  left_join(day12RNA, by ="FRP") %>%
+  left_join(day26RNA, by ="FRP") %>%
+  filter(RNAday9 > 0 | RNAday12 > 0 | RNAday26 > 0)
+```
+
+
+```{r}
+master88 <- left_join(prim_master, PCR_day01, by ="FRP") %>%
+  left_join(PCR_day26, by ="FRP") %>%
+  left_join(day9RNA, by ="FRP") %>%
+  left_join(day12RNA, by ="FRP") %>%
+  left_join(day26RNA, by ="FRP") %>%
+  filter(RNAday9 > 0 | RNAday12 > 0 | RNAday26 > 0)
+```
+
+
+
+```{r}
+write_csv(master88, "../analyses/master88.csv")
+```
+

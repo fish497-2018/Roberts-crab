@@ -112,6 +112,9 @@ PCR_day26 <- withDay03 %>%
   summarise(Avg_startq_day26 = mean(day26))
 
 ```
+
+
+
 ```{r}
 PCR_day01 <- withDay03 %>%
   group_by(FRP) %>% 
