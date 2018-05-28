@@ -35,6 +35,13 @@ plot(pressure)
 ## Backstory 
 Tanner crabs were captured and brought back in the lab to be tested for the presence of bitter crab disease. Crabs were then placed in three different temperature treatments to examine how temperature influences disease progression.     
 
-![tank](img/tank.ppg)
+![tank](img/tank.jpg)
+
+
+## Data Wrangling Problem
+There are a lot of crabs. We have intitial design data including presumed disease state (cPCR), quantitative PCR confirming disease status, and RNA levels. We need to decide on which crabs will be used to construct RNA-seq libraries to look at immune response genes. 
+
+
+
 
 
