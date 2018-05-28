@@ -41,7 +41,27 @@ Tanner crabs were captured and brought back in the lab to be tested for the pres
 ## Data Wrangling Problem
 There are a lot of crabs. We have intitial design data including presumed disease state (cPCR), quantitative PCR confirming disease status, and RNA levels. We need to decide on which crabs will be used to construct RNA-seq libraries to look at immune response genes. 
 
+![needle](img/needle.jpg)
 
 
+## The Starting table
 
+Here is what the "Master" looks like. What is wrong here?
+
+![ss](img/master.png)
+
+## Bringing in data
+
+`
+
+```{r, echo = TRUE}
+library(tidyverse)
+```
+
+
+## Bringing in data
+
+```{r, echo = TRUE}
+    prim_master <- read_csv("../data/20180522-master-all-crabs-hemo-mod3.csv")
+```
 
