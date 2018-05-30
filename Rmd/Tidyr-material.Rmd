@@ -9,7 +9,7 @@ library(tidyr)
 ```
 
 ```{r}
-genes_wide = data.frame(
+genes_wide <- data.frame(
   name = c("A", "B", "C"),
   a = c("16-Y", "25-N", "13-Y"),
   t = c("1-N", "12-Y", "31-Y")
@@ -53,4 +53,39 @@ genes_wide
         * Column name for grouping of old column values
         * Column range for old columns with values
     * Gets data in long format
+
+
+```{r}
+genes_wide
+```
+
+```{r}
+genes_long <- genes_wide %>%
+  gather(base, base_counts, a:t)
+genes_long
+```
+
+
+
+* `separate()`
+    * Separates multiple values in single column
+    * Arguments:
+        * Piped `data.frame`
+        * Column name
+        * New column names
+        * Separator value or character
+
+```{r}
+genes = genes_long %>%
+  separate(base_counts, c("counts", "sequence"), sep = "-")
+```
+
+```{r}
+genes
+
+```
+
+* Use `spread()` to turn data from long to wide format
+
+
 
