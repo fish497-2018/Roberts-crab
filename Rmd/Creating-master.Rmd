@@ -8,7 +8,7 @@ There are a lot of various files that need to be combined such that the table ca
 
 
 
-Here is what the current "Master" looks like
+Here is what the current "Master" looks like write below.
 
 ![ss](img/master.png)
 
