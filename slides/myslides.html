@@ -112,14 +112,14 @@
 
 <pre class = 'prettyprint lang-r'>library(tidyverse)</pre>
 
-<pre >## ── Attaching packages ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</pre>
+<pre >## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</pre>
 
 <pre >## ✔ ggplot2 2.2.1     ✔ purrr   0.2.4
 ## ✔ tibble  1.4.2     ✔ dplyr   0.7.4
 ## ✔ tidyr   0.8.0     ✔ stringr 1.3.1
 ## ✔ readr   1.1.1     ✔ forcats 0.3.0</pre>
 
-<pre >## ── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre >## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</pre>
 
@@ -30054,8 +30054,6 @@ knitr::kable(first_pcr)</pre>
 <p>You can easily add the dates. Any crab with a 37- or 38- prefix in the sample no. was from Day 26 &#8211; those also have tube #s, cuz the aliquots (DNA in RNAlater) came from you. All the crabs with 30- thru 34- were sampled on day 0/1. Make sense?</p>
 </blockquote>
 </blockquote>
-
-</article></slide><slide class=""><hgroup><h2>Solution</h2></hgroup><article  id="solution">
 
 <pre class = 'prettyprint lang-r'>mutate(first_pcr, sampleday = 
   ifelse(Sample_pre == 37 | Sample_pre == 38, &quot;day26&quot;, 
